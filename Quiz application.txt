@@ -1,0 +1,127 @@
+package adi.com.quizapp;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+
+public class Questions {
+	private String Questions;
+	private String Option1;
+	private String Option2;
+	private String Option3;
+	private String Option4;
+	public Questions(String questions, String option1, String option2, String option3, String option4) {
+
+	Questions = questions;
+	Option1 = option1;
+	Option2 = option2;
+	Option3 = option3;
+	Option4 = option4;
+	}
+	public String getQuestions() {
+		return Questions;
+	}
+	public void setQuestions(String questions) {
+		Questions = questions;
+	}
+	public String getOption1() {
+		return Option1;
+	}
+	public void setOption1(String option1) {
+		Option1 = option1;
+	}
+	public String getOption2() {
+		return Option2;
+	}
+	public void setOption2(String option2) {
+		Option2 = option2;
+	}
+	public String getOption3() {
+		return Option3;
+	}
+	public void setOption3(String option3) {
+		Option3 = option3;
+	}
+	public String getOption4() {
+		return Option4;
+	}
+	public void setOption4(String option4) {
+		Option4 = option4;
+	}
+	@Override
+	public String toString() {
+		return "Questions [Questions=" + Questions + ", Option1=" + Option1 + ", Option2=" + Option2 + ", Option3="
+				+ Option3 + ", Option4=" + Option4 + "]";
+	}
+	
+	
+	
+
+}
+class Quiz{
+	Scanner sc = new Scanner(System.in);
+	int correctAnsCount=0;
+	int wrongAnsCount=0;
+	 public void logic() {;
+		 Questions q1 = new Questions("Which component is used to compile, debug and execute the java programs?","a)JRE",",b)JVM","c)JDK","d)JIT");
+		 Questions q2 = new Questions("Which of the following is correct way of importing an entire package ‘pkg’? ","a)import pkg.","b)Import pkg.","c)import pkg.*","d)Import pkg.*");
+		 Questions q3 = new Questions("If we are writing two packages in project as,com.hi and com.hello which is root folder here?","a)hi","b)hello","c)com","d)None of above");
+		 Questions q4 = new Questions("Which keywords we use to create a folder structure in Java?","a)Package","b)folder","c)static","d)all of above");
+		 Questions q5 = new Questions("Identify the correct syntax -------","a)System.Out.Println();","b)System.out.println();","c)System.Out.println();","d)system.out.println();");
+	 
+	 Map<Questions,Character> hmap = new HashMap<>();
+	 hmap.put(q1,'c');
+	 hmap.put(q2,'c');
+	 hmap.put(q3,'c');
+	 hmap.put(q4,'a');
+	 hmap.put(q5,'b');
+	 for(Map.Entry<Questions,Character> map:hmap.entrySet()) {
+		 System.out.println(map.getKey().getQuestions());
+		 System.out.println(map.getKey().getOption1());
+		 System.out.println(map.getKey().getOption2());
+		 System.out.println(map.getKey().getOption3());
+		 System.out.println(map.getKey().getOption4());
+		 System.out.print("Enter your Answer(in small case): ");
+		 Character ans=sc.next().charAt(0);
+		 int  cans = Character.compare(ans,map.getValue());
+		 if(cans==0) {
+			 System.out.println("Correct Answer");
+			 correctAnsCount++;
+			 System.out.println("*************************************************");
+		 }
+		 else {
+			 System.out.println("Wrong Answer");
+			 wrongAnsCount++;
+			 System.out.println("***************************************************");
+		 }
+	 }
+	 System.out.println();
+	 System.out.println("----Result------");
+	 System.out.println("Total Questions:"+hmap.size());
+	 System.out.println("Correct Answered Question : "+correctAnsCount);
+	 System.out.println("Wrong Answered Question : "+wrongAnsCount);
+	 System.out.println("Percentage : "+(100*correctAnsCount)/hmap.size());
+	 
+	 }
+	 
+}
+
+public class Main {
+	public static void main(String args[]) {
+		System.out.println("......Welcome to online Quiz Application......");
+		System.out.print("Do you want to Attempt Quiz(Y/N) : ");
+	Scanner sc= new Scanner(System.in);
+		char a =sc.next().charAt(0);
+		 System.out.println("---------*****************----------");
+		if(a=='y' || a=='Y') {
+	    Quiz q = new Quiz();
+	    q.logic();
+		}
+		else {
+			System.out.println("Thankyou for Visiting the Application.....");
+		}
+		
+	}
+
+}
+ 
